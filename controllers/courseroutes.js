@@ -51,7 +51,7 @@ router.get('/getsavedcourses/:id',async(req,res)=>{
 
         const userID=req.params.id;
         const user=await userModel.findById(userID)
-        const course=await courseModel.findById(user.usercourses)
+        const course=await courseModel.find({_id:{$in:user.usercourses}})
         res.json(course)
     }
     catch(error){
